@@ -3,22 +3,26 @@ import { createSlice } from '@reduxjs/toolkit';
 export const cardSlice = createSlice({
   name: 'card',
   initialState: {
-	cards: [],
-    color: '',
-	namber: 0,
     selected: [],
   },
   reducers: {
-    
-    removeCard: (state, { payload: { namber } }) => {
-      state.cards = state.cards.filter((card) => (card.namber !== namber));
-
-    },
+    setSelected: (state, { payload }) => 
+		{
+		
+		state.selected.push(payload);
+		console.log(state.selected);
+	  },
+	  setSelectedEmpty: (state) => 
+		{
+		state.selected = [];
+		console.log(state.selected);
+	  },
   },
 });
 
 export const {
-  removeCard,
+  setSelected,
+  setSelectedEmpty,
 } = cardSlice.actions;
 
 export default cardSlice.reducer;
