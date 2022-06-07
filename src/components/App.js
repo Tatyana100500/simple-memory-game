@@ -1,12 +1,12 @@
 
-//import Game from './Game';
-import Cards from "./Cards";
-import './App.css';
+import Game from './Game';
+import '../App.css';
 
 function App() {
 	
   return (
     <div>
+      <Game/>
     </div>
   );
 }

@@ -22,11 +22,8 @@ export const cardsSlice = createSlice({
   },
   reducers: {
     removeCards: (state, { payload }) => {
-	  
       state.cards = state.cards.filter((card) => {
-		console.log(card.id, payload);
 		  return (card.id != payload)});
-	  console.log(state.cards);
     },
   },
 });

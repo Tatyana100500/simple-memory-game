@@ -10,12 +10,10 @@ export const cardSlice = createSlice({
 		{
 		
 		state.selected.push(payload);
-		console.log(state.selected);
 	  },
 	  setSelectedEmpty: (state) => 
 		{
 		state.selected = [];
-		console.log(state.selected);
 	  },
   },
 });

@@ -1,23 +1,20 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { setSelectedEmpty, setSelected } from './slices/cardSlise';
-import {  removeCards } from './slices/cardsSlise'
-//import Card from './Card';
+import { setSelectedEmpty, setSelected } from '../slices/cardSlise';
+import { removeCards } from '../slices/cardsSlise';
+import { addRaund } from '../slices/gameSlice';
+
 function Card (props) {
-	
 	const dispatch = useDispatch();
 	const clickCard =(e) => {
 		const section = e.target.parentElement;
-		const front = section.firstChild;
-		front.className = `${front.className} ${props.name}`;
-		console.log(front.className);
-		const newClass = `${e.target.className} active`;
-		e.target.className = newClass;
-		//state.selected.push({id: props.id, name: props.name});
-		dispatch(setSelected({id: props.id, name: props.name}));
-		//setState({id: props.id, name: props.name});
-		
-		//state.selected = selected.push(id);
+		section.setAttribute('id', props.id);
+		section.firstChild.classList.add(`${props.name}`);
+		e.target.classList.add('active');
+		const setDispatch = () => {
+			dispatch(setSelected({id: props.id, name: props.name}));
+		}
+		setTimeout(setDispatch, 500);
 	};
 	return (
 	  <section className='card'>
@@ -26,34 +23,36 @@ function Card (props) {
 	  </section>
 	);
   }
-const Cards = (props) => {
+const Cards = () => {
 	
 	let { cards } = useSelector((state) => state.cards);
 	let { selected } = useSelector((state) => state.card);
 	const dispatch = useDispatch();
-	//const [ selectedIsTwo, setStateSelected ] = useState(false);
-	console.log(selected.length);
 	useEffect(() => {
-
+		
 		if (selected.length === 2) {
-			
+			const card1 = document.getElementById(`${selected[0].id}`);
+			const card2 = document.getElementById(`${selected[1].id}`);
 			if (selected[0].name === selected[1].name) {
-				
 			  dispatch(removeCards(selected[1].id));
 			  dispatch(removeCards(selected[0].id));
 			  dispatch(setSelectedEmpty());
-				//cards = cards.filter((card) => (card.id !== selected[0].id));
-				console.log('yes', cards);
+			  dispatch(addRaund());
+			  card1.remove();
+			  card2.remove();
 			
 			} else {
-				//selected = [];
 				dispatch(setSelectedEmpty());
-				console.log('no', selected);
-				
+				dispatch(addRaund());
+				card1.firstChild.classList.add('active');
+				card2.firstChild.classList.add('active');
+				card1.firstChild.classList.remove('active');
+				card2.firstChild.classList.remove('active');
+				card1.lastChild.classList.remove('active');
+				card2.lastChild.classList.remove('active');
 			}
-			//dispatch(setStateSelected(true));
 		}
-},[selected, cards]);
+	},[selected, cards]);
 
 	return (
 	  <div>

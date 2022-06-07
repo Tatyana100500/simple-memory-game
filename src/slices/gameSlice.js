@@ -3,11 +3,11 @@ import { createSlice } from '@reduxjs/toolkit';
 export const gameSlice = createSlice({
   name: 'game',
   initialState: {
-    raunds: [],
+    raunds: 1,
   },
   reducers: {
-    addRaund: (state, { payload: { round } }) => {
-      state.raunds.push(round);
+    addRaund: (state) => {
+      state.raunds += 1;
     },
   },
 });
