@@ -9,7 +9,7 @@ const Game = () => {
 	useEffect(() => {
 		if (cards.length === 0) {
 			const game = document.getElementById('game');
-			game.firstChild.textContent = "Конец игры!"
+			game.firstChild.textContent = "Конец игры!";
 			}
 	}, [cards])
 	
