@@ -3,7 +3,6 @@ import ReactDOM from 'react-dom/client';
 import { Provider } from 'react-redux';
 import './index.css';
 import App from './components/App';
-import Cards from "./components/Cards";
 import store from './store.js';
 import reportWebVitals from './reportWebVitals';
 
