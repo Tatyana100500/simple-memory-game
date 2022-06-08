@@ -8,13 +8,14 @@ function Card (props) {
 	const dispatch = useDispatch();
 	const clickCard =(e) => {
 		const section = e.target.parentElement;
+		if(section.className === 'card-inner') {
 		section.setAttribute('id', props.id);
-		//section.firstChild.classList.add(`${props.name}`);
 		section.classList.add('active');
 		const setDispatch = () => {
 			dispatch(setSelected({id: props.id, name: props.name}));
 		}
 		setTimeout(setDispatch, 500);
+	  }
 	};
 	return (
 	  <div onClick={clickCard} className='card'>
@@ -46,18 +47,14 @@ const Cards = () => {
 			} else {
 				dispatch(setSelectedEmpty());
 				dispatch(addRaund());
-				//card1.firstChild.classList.add('active');
-				//card2.firstChild.classList.add('active');
 				card1.classList.remove('active');
 				card2.classList.remove('active');
-				//card1.lastChild.classList.remove('active');
-				//card2.lastChild.classList.remove('active');
 			}
 		}
 	},[selected, cards]);
 
 	return (
-	  <div>
+	  <div className='container'>
 		<div className="row">
 		  <Card id='1' name='red' />
 	      <Card id='2' name='yellow' />
