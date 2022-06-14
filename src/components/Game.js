@@ -1,24 +1,20 @@
 import Cards from "./Cards";
 import { useSelector } from 'react-redux';
-import React, { useEffect } from 'react';
+import React from 'react';
 
 const Game = () => {
-	let { raunds } = useSelector((state) => state.game);
-	let { cards } = useSelector((state) => state.cards);
-	
-	useEffect(() => {
-		if (cards.length === 0) {
-			const game = document.getElementById('game');
-			game.firstChild.textContent = "Конец игры!";
-			}
-	}, [cards])
-	
-	return (
-	  <div id="game">
-		<p>{`Раунд: ${raunds}`}</p>
-		<Cards />
-	  </div>
-	)
-  };
+  const { raunds, hiddens } = useSelector((state) => state.game);
+    if (hiddens === 16) {
+	  return(<div id="game">
+			  <p>Конец игры!</p>
+			</div>)
+    }
+  return (
+	<div id="game">
+	  <p>{`Раунд: ${raunds}`}</p>
+	  <Cards />
+	</div>
+  )
+};
   
-  export default Game;
+export default Game;

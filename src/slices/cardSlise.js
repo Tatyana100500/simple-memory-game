@@ -6,15 +6,12 @@ export const cardSlice = createSlice({
     selected: [],
   },
   reducers: {
-    setSelected: (state, { payload }) => 
-		{
-		
-		state.selected.push(payload);
-	  },
-	  setSelectedEmpty: (state) => 
-		{
-		state.selected = [];
-	  },
+    setSelected: (state, { payload }) => {
+	  state.selected.push(payload);
+	},
+	setSelectedEmpty: (state) => {
+	  state.selected = [];
+	},
   },
 });
 
